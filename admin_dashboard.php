@@ -97,8 +97,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['active_tab'])) {
 
 // Fetch all purchases
 $purchases = $conn->query("
-    SELECT p.id, p.product_name, p.price, p.quantity, p.total, p.status, p.date_purchased,
-           u.username, u.email
+    SELECT 
+        p.id, 
+        p.product_name, 
+        p.price, 
+        p.quantity, 
+        (p.price * p.quantity) AS total, 
+        p.status, 
+        p.date_purchased,
+        u.username, 
+        u.email
     FROM purchases p
     JOIN users u ON p.user_id = u.id
     ORDER BY p.date_purchased DESC
@@ -110,7 +118,18 @@ $users = $conn->query("
 
 // Fetch all cart items
 $cart = $conn->query("
-    SELECT c.id, c.product_name, c.quantity, c.total_price, c.user_id, u.username, u.email FROM cart c JOIN users u ON c.user_id = u.id");
+    SELECT 
+        c.id, 
+        c.product_name, 
+        c.price, 
+        c.quantity, 
+        (c.price * c.quantity) AS total_price, 
+        c.user_id, 
+        u.username, 
+        u.email 
+    FROM cart c 
+    JOIN users u ON c.user_id = u.id
+");
 
 ?>
 <!DOCTYPE html>
@@ -191,7 +210,7 @@ button.delete:hover { background: #d32f2f; }
             <td><?= htmlspecialchars($row['email']) ?></td>
             <td><?= htmlspecialchars($row['product_name']) ?></td>
             <td><?= $row['quantity'] ?></td>
-            <td>₱<?= number_format($row['total'], 2) ?></td>
+            <td>₱<?= number_format($row['price'], 2) ?> × <?= $row['quantity'] ?> = ₱<?= number_format($row['total'], 2) ?></td>
             <td><?= htmlspecialchars($row['status']) ?></td>
             <td><?= $row['date_purchased'] ?></td>
             <td>
@@ -309,7 +328,7 @@ button.delete:hover { background: #d32f2f; }
                         <td><?= $item['id'] ?></td>
                         <td><?= htmlspecialchars($item['product_name']) ?></td>
                         <td><?= $item['quantity'] ?></td>
-                        <td>₱<?= number_format($item['total_price'], 2) ?></td>
+                        <td>₱<?= number_format($item['price'], 2) ?> × <?= $item['quantity'] ?> = ₱<?= number_format($item['total_price'], 2) ?></td>
                         <td>
                             <form method="POST">
                                 <input type="hidden" name="cart_id" value="<?= $item['id'] ?>">

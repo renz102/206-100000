@@ -755,7 +755,7 @@ function buyNow() {
 
   // Prefill the payment popup
   const summary = document.getElementById("selectedItemsList");
-  summary.innerHTML = `<p>${selectedProduct.name} - ₱${selectedProduct.price}</p>`;
+  summary.innerHTML = `<p>${selectedProduct.name} - ${selectedProduct.price}</p>`;
 
   // Set hidden input for checkout
   document.getElementById("checkoutItems").value = JSON.stringify([{

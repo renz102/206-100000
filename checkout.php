@@ -29,23 +29,42 @@ if (!is_array($items) || count($items) === 0) {
     exit;
 }
 
-// Process each item and mark as purchased
-foreach ($items as $item) {
-    // Add to purchases table
-    $stmt = $conn->prepare("INSERT INTO purchases (user_id, product_name, price, status, fullname, email, address, payment_method) VALUES (?, ?, ?, 'Purchased', ?, ?, ?, ?)");
-    $stmt->bind_param("isdssss", $user_id, $item['name'], $item['price'], $fullname, $email, $address, $paymentMethod);
-    $stmt->execute();
-    $stmt->close();
+// Begin transaction to ensure atomicity
+$conn->begin_transaction();
 
-    // Remove from cart
-    $stmt = $conn->prepare("DELETE FROM cart WHERE user_id=? AND product_name=?");
-    $stmt->bind_param("is", $user_id, $item['name']);
-    $stmt->execute();
-    $stmt->close();
+try {
+    foreach ($items as $item) {
+        $product_name = $item['name'];
+        $price = floatval($item['price']);
+        $quantity = intval($item['quantity'] ?? 1); // default to 1 if not provided
+        $total = $price * $quantity;
+
+        // Insert into purchases table
+        $stmt = $conn->prepare("
+            INSERT INTO purchases 
+            (user_id, product_name, price, quantity, total, status, fullname, email, address, payment_method) 
+            VALUES (?, ?, ?, ?, ?, 'Purchased', ?, ?, ?, ?)
+        ");
+        $stmt->bind_param("isdidssss", $user_id, $product_name, $price, $quantity, $total, $fullname, $email, $address, $paymentMethod);
+        $stmt->execute();
+        $stmt->close();
+
+        // Remove from cart
+        $stmt = $conn->prepare("DELETE FROM cart WHERE user_id=? AND product_name=?");
+        $stmt->bind_param("is", $user_id, $product_name);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    // Commit transaction
+    $conn->commit();
+
+    echo json_encode(['success' => true, 'message' => 'Purchase completed successfully.']);
+} catch (Exception $e) {
+    $conn->rollback();
+    echo json_encode(['success' => false, 'message' => 'Checkout failed: ' . $e->getMessage()]);
 }
 
-// Return success
-echo json_encode(['success' => true, 'message' => 'Purchase completed successfully.']);
 $conn->close();
 exit;
 ?>

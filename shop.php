@@ -413,7 +413,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   padding: 3px 8px;
   border-radius: 6px;
   font-weight: bold;
-  margin-left: 5px;
+  margin-left: 20px;
 }
 
 /* Scrollbar styling for popup if content is long */
@@ -749,7 +749,7 @@ async function removeFromCart(cartId) {
 // ---------- BUY NOW ----------
 function buyNow() {
   if (!<?= isset($_SESSION['user_id']) ? 'true' : 'false'; ?>) {
-    alert("Please log in to buy this item.");
+    showToast("Please log in to buy this item.", "error");
     return;
   }
 

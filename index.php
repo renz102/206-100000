@@ -1041,7 +1041,7 @@ margin-top: -55px;
         <!-- Member 1 -->
         <hr>
         <div class="team-member">
-          <img src="rickman.jpg" alt="Rickman Malubag">
+          <img src="images/rickman.jpg" alt="Rickman Malubag">
           <div class="member-info">
             <h1>Rickman Malubag</h1>
             <h3><i>UX Designer</i></h3>
@@ -1052,7 +1052,7 @@ margin-top: -55px;
         <!-- Member 2 -->
         <hr>
         <div class="team-member">
-          <img src="diether.jpg" alt="Diether Lingon">
+          <img src="images/diether.jpg" alt="Diether Lingon">
           <div class="member-info">
             <h1>Diether Lingon</h1>
             <h3><i>UI Designer</i></h3>
@@ -1063,7 +1063,7 @@ margin-top: -55px;
         <!-- Member 3 -->
         <hr>
         <div class="team-member">
-          <img src="mark.jpg" alt="Mark Joseph Soriano">
+          <img src="images/mark.jpg" alt="Mark Joseph Soriano">
           <div class="member-info">
             <h1>Mark Joseph Soriano</h1>
             <h3><i>Database Administrator</i></h3>
@@ -1074,7 +1074,7 @@ margin-top: -55px;
         <!-- Member 4 -->
         <hr>
         <div class="team-member">
-          <img src="renz.jpg" alt="Renz Pio Valenzuela">
+          <img src="images/renz.jpg" alt="Renz Pio Valenzuela">
           <div class="member-info">
             <h1>Renz Pio Valenzuela</h1>
             <h3><i>Backend Developer</i></h3>

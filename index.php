@@ -387,6 +387,145 @@ if (isset($_SESSION['show_forgot_suggestion'])) {
     background-color: #7b8e5c;
     transform: scale(1.05);
 }
+
+/* Make any .screen scrollable */
+.screen.scrollable {
+  overflow-y: auto; /* enable vertical scrolling */
+  -webkit-overflow-scrolling: touch; /* smooth scroll on mobile */
+}
+
+/* ABOUT SECTION */
+#about {
+  position: relative;       /* stays consistent with your screen layout */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto;      /* allows scrolling */
+  padding: 100px 40px 60px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background: #faf6ef;   /* clean background */
+}
+
+/* Optional: additional scroll styling for modular approach */
+#about.scrollable {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll for mobile */
+  padding: 80px 40px 40px 40px; /* slightly different padding if needed */
+}
+
+#about p {
+  text-align: center;
+  font-family: 'Arial', sans-serif;
+  max-width: 1200px;
+  line-height: 2;
+  font-size: 30px;
+  margin: 0 auto 20px auto;     /* centers the block itself horizontally */
+  color: #3e3b32;
+}
+
+#about h2 {
+  font-size: 80px;
+  margin-bottom: 50px;
+  font-family: 'Arial', sans-serif;
+  color: #2b2820;
+  text-align: left;             /* stays left-aligned */
+}
+
+/* TEAM SECTION UNDER ABOUT */
+#team {
+  max-width: 1200px; /* increased from 900px */
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px; /* slightly bigger gap */
+  padding: 30px 0; /* more padding for breathing room */
+  flex-wrap: wrap; /* allows stacking on smaller screens */
+}
+
+.team-member img {
+  width: 200px;   /* increased from 150px */
+  height: 200px;  /* increased from 150px */
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #333;
+  order: 2; /* image appears on the right on large screens */
+}
+
+.member-info {
+  flex: 1;
+  order: 1; /* text appears on the left on large screens */
+}
+
+.member-info h1 {
+  margin: 0;
+  font-size: 28px; /* slightly bigger */
+}
+
+.member-info h3 {
+  margin: 5px 0 0;
+  font-size: 20px; /* slightly bigger */
+  font-weight: normal;
+  color: #555;
+}
+
+hr {
+  border: 0;
+  height: 4px;               /* thicker line */
+  width: 80%;                /* longer, almost full width */
+  background-color: #d8c4a2; /* beige/earthy tone */
+  margin: 40px auto;         /* spacing above & below, centered */
+  border-radius: 2px;        /* slight rounding for elegance */
+}
+
+/* MOBILE: stack image above text */
+@media screen and (max-width: 600px) {
+  .team-member {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .team-member img {
+    order: 0; /* image appears first */
+    margin-bottom: 15px; /* more spacing */
+    width: 180px;  /* slightly smaller for mobile */
+    height: 180px;
+  }
+
+  .member-info {
+    order: 1;
+  }
+}
+
+/* CONTACT SCREEN */
+#contact {
+  display: center;
+  background: #f3ede0ff; /* soft, warm background */
+
+}
+
+#contact h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 70px;
+  color: #605947ff;
+  margin-bottom: 40px;
+}
+
+#contact p {
+  font-family: 'Arial', sans-serif;
+  font-size: 28px;
+  line-height: 2;
+  color: #3e3b32;
+  max-width: 800px;
+}
+
 .user-info {
   display: flex;
   align-items: center;
@@ -877,14 +1016,74 @@ margin-top: -55px;
   </div>
 
   <!-- ABOUT SCREEN -->
-  <div class="screen" id="about">
-    <h2>About Us</h2>
-    <p>
-      Welcome to Exotic Blooms, your trusted source for rare and beautiful flowers.
-      <br><br>
-      We specialize in unique, hand-grown plants and exotic floral designs that
-      bring warmth and serenity to your home.
-    </p>
+  <div class="screen scrollable" id="about">
+    <br><br><h2>About Us</h2><br>
+      <p>
+        Welcome to Bloom Exotica, your premier destination for discovering rare and exquisite flowers from around the world. Our website was crafted with passion to bring the beauty of nature closer to every enthusiast, collector, and admirer of the extraordinary. Here, each bloom tells a story — of vibrant origins, delicate growth, and the artistry of nature itself.
+        Our mission is to make exotic flowers accessible, allowing visitors to explore, learn, and purchase with ease through a seamless and elegant online experience.
+      </p><br><br><br><br><br>
+
+      <h2>Acknowledgement</h2><br>
+      <p>
+        The IT students would like to express their heartfelt gratitude to everyone who contributed to the successful development of the BLOOMS | Naural Florist. This project was made possible through the dedication, teamwork, and shared effort of each member of the development team.
+        The group extends their sincere appreciation to Mr. Rickman Malubag, the User Experience (UX) Designer, for his innovative design work in Figma, ensuring that users experience smooth and intuitive navigation throughout the system.
+        Special thanks are also given to Mr. Diether Lingon, who handled the User Interface (UI) Design), for his creativity and skill in crafting a visually appealing and user-friendly interface.
+        The team likewise acknowledges Mr. Mark Joseph Soriano, the Database Administrator, for his careful and organized management of the project’s database, which serves as the foundation of the system’s reliability.
+        Sincere appreciation is also extended to Mr. Renz Pio Valenzuela, who served as the Backend Developer, for his commitment to ensuring the system’s stability, functionality, and overall performance.
+      </p> <br><br>
+      <p>
+        Above all, the students express their deepest gratitude to their great professor, Mr. Richard De Guzman, for his guidance, patience, and valuable insights that greatly contributed to the success of this project. His mentorship has inspired the team to improve both their technical and collaborative skills.
+        Finally, the team would like to thank their families and peers for their continuous encouragement, understanding, and support throughout the development process. Their presence and motivation have been instrumental in the completion of this project.
+      </p><br><br><br><br><br>
+
+      <!-- TEAM SECTION -->
+      <div id="team">
+        <!-- Member 1 -->
+        <hr>
+        <div class="team-member">
+          <img src="rickman.jpg" alt="Rickman Malubag">
+          <div class="member-info">
+            <h1>Rickman Malubag</h1>
+            <h3><i>UX Designer</i></h3>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Member 2 -->
+        <hr>
+        <div class="team-member">
+          <img src="diether.jpg" alt="Diether Lingon">
+          <div class="member-info">
+            <h1>Diether Lingon</h1>
+            <h3><i>UI Designer</i></h3>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Member 3 -->
+        <hr>
+        <div class="team-member">
+          <img src="mark.jpg" alt="Mark Joseph Soriano">
+          <div class="member-info">
+            <h1>Mark Joseph Soriano</h1>
+            <h3><i>Database Administrator</i></h3>
+          </div>
+        </div>
+        <hr>
+
+        <!-- Member 4 -->
+        <hr>
+        <div class="team-member">
+          <img src="renz.jpg" alt="Renz Pio Valenzuela">
+          <div class="member-info">
+            <h1>Renz Pio Valenzuela</h1>
+            <h3><i>Backend Developer</i></h3>
+          </div>
+        </div>
+        <hr>
+        <hr>
+        <hr>
+      </div> 
   </div>
 
   <!-- CONTACT SCREEN -->
@@ -892,8 +1091,8 @@ margin-top: -55px;
     <h2>Contact Us</h2>
     <p>
       Questions? Orders? We’d love to hear from you.<br><br>
-      <em>Email:</em> contact@exoticblooms.com<br>
-      <em>Phone:</em> (555) 012-9876
+      <em><b>Email:</b></em> exoticsblooms@gmail.com<br>
+      <em><b>Phone:</b></em> (+63)962-510-0933
     </p>
   </div>
 
@@ -1069,11 +1268,11 @@ margin-top: -55px;
       <div style="display:flex; gap:10px;">
         <div style="flex:1;">
           <label>First Name:</label>
-          <input type="text" name="first_name" required>
+          <input type="text" name="first_name" placeholder="First Name" required>
         </div>
         <div style="flex:1;">
           <label>Last Name:</label>
-          <input type="text" name="last_name" required>
+          <input type="text" name="last_name" placeholder="Last Name" required>
         </div>
       </div>
 
@@ -1088,17 +1287,17 @@ margin-top: -55px;
 
       <div class="half">
         <label>Username:</label>
-        <input type="text" name="username" required>
+        <input type="text" name="username" placeholder="Enter your Username" required>
       </div>
 
       <label>Email:</label>
-      <input type="email" name="email" required>
+      <input type="email" name="email" placeholder="Enter your Email" required>
 
       <label>Phone Number:</label>
-      <input type="text" name="phone_number" placeholder="Enter your phone number" required>
+      <input type="text" name="phone_number" placeholder="Enter your Phone Number" required>
 
       <label>Password:</label>
-      <input type="password" name="password" required>
+      <input type="password" name="password" placeholder="Enter your Password" required>
 
       <button type="submit">Sign Up</button>
     </form>
